@@ -36,7 +36,6 @@ export const AuthProvider = ({ children }: AuthProviderProps): React.JSX.Element
 		member: null,
 		signOut: async () => {
 			try {
-				console.log("@@@LOGOUT");
 				await supabaseClient.auth.signOut();
 				localStorage.removeItem("sb-hsuosrobaujskzclmiyj-auth-token");
 				setState((prevState) => ({

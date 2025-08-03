@@ -39,27 +39,29 @@ export function Page(): React.JSX.Element | null {
 			return;
 		}
 
-		const accessToken = hashParams.get("access_token");
-		const refreshToken = hashParams.get("refresh_token");
+		const { data } = await supabaseClient.auth.getSession();
+
+		supabaseClient.functions.invoke("hyper-responder", {
+			body: {
+				id: data.session?.user.id,
+				email: data.session?.user.email,
+				name: data.session?.user.user_metadata.name,
+				role: "member",
+			},
+		});
+
+		const accessToken = data.session?.access_token;
+		const refreshToken = data.session?.refresh_token;
 
 		if (!accessToken || !refreshToken) {
 			setDisplayError("Access token or refresh token is missing");
 			return;
 		}
 
-		if (provider === "kakao") {
-			const { data } = await supabaseClient.auth.getSession();
-			supabaseClient.functions.invoke("hyper-responder", {
-				body: {
-					id: data.session?.user.id,
-					email: data.session?.user.email,
-					name: data.session?.user.user_metadata.name,
-					role: "member",
-				},
-			});
-		}
-
-		const { error } = await supabaseClient.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
+		const { error } = await supabaseClient.auth.setSession({
+			access_token: accessToken,
+			refresh_token: refreshToken,
+		});
 
 		if (error) {
 			logger.debug(error.message);
