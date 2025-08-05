@@ -6,10 +6,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
-export const workspaces = [
-	{ name: "목공소", avatar: "/assets/workspace-avatar-1.png" },
-	{ name: "Admin", avatar: "/assets/workspace-avatar-2.png" },
-] satisfies Workspaces[];
+export const workspaces = [{ name: "도토리", avatar: "/assets/workspace-avatar-1.png" }] satisfies Workspaces[];
 
 export interface Workspaces {
 	name: string;
