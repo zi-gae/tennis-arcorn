@@ -93,23 +93,23 @@ export const Page = () => {
 									xs: 12,
 								}}
 							>
-								<RankingChart title="Single ranking" type="singles" />
+								<RankingChart title="Season ranking" type="total" />
 							</Grid>
 						</Grid>
 					)}
 
 					<Grid container spacing={3}>
-						<Grid
+						{/* <Grid
 							size={{
 								md: 4,
 								xs: 12,
 							}}
 						>
 							<RankingChart title="Season ranking" type="total" />
-						</Grid>
+						</Grid> */}
 						<Grid
 							size={{
-								md: 4,
+								md: 6,
 								xs: 12,
 							}}
 						>
@@ -117,7 +117,7 @@ export const Page = () => {
 						</Grid>
 						<Grid
 							size={{
-								md: 4,
+								md: 6,
 								xs: 12,
 							}}
 						>
